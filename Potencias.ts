@@ -1,14 +1,25 @@
-import * as rls from "readline-sync";
+import * as readline from "readline-sync";
 
 function calcularPotencia(base: number, exponente: number): number {
-    if (exponente == 0) {
-        return 1;
-    } else {
-        return base * calcularPotencia(base, exponente - 1);
+    let resultado = 1;
+    for (let i = 0; i < exponente; i++) {
+        resultado *= base;
     }
+    return resultado;
 }
 
-let base: number = rls.questionInt("Ingrese el numero de la base: ");
-let exponente: number = rls.questionInt("Ingrese el numero del exponente: ");
+let base: number;
+while (true) {
+    base = readline.questionInt("Ingrese el numero de la base: ");
+    if (base > 0) break;
+    console.log("Use un numero positivo.");
+}
+
+let exponente: number;
+while (true) {
+    exponente = readline.questionInt("Ingrese el numero del exponente: ");
+    if (exponente > 0) break;
+    console.log("Use un numero positivo");
+}
 
 console.log("El resultado es: " + calcularPotencia(base, exponente));
